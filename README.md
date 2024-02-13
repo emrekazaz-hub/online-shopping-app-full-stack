@@ -18,20 +18,15 @@ To download and run the project, follow these steps:
     npm start
 
 
-## Project Status and Objectives
+## Project Overview
 
-The project currently provides an interface where users can list products and perform various actions. Database operations are handled using Node.js and PostgreSQL.
+The project currently serves as a prototype for an online shopping application. Products are stored and listed in an array for demonstration purposes. Users can browse, search, add/remove items to/from their cart, and manage favorites.
 
+User information is stored in a PostgreSQL database via a Node.js server. Express is used for the server, while Knex is employed for database operations. Users can perform actions such as logging in/out, creating new accounts, viewing and updating profile information, and managing card and address details. All these operations are currently managed and stored in the database without security measures.
 
-## Completed tasks include:
+## Planned Features
 
-* Listing products
-* Adding/removing items to/from cart and favorites
-
-
-## Upcoming tasks:
-
-* Implementing secure authentication and session management using JWT/cookies
-* Integrating Google Maps API for address handling
-* Fetching products from the database based on user authentication
-* UI enhancements, including scroll animations (GSAP)
+* Implement secure authentication and session management using JWT/cookies.
+* Integrate Google Maps API for address handling.
+* Fetch products from the database and enable special product operations for users with tokens.
+* Enhance the user interface, currently in the prototype stage, with scroll animations (GSAP) and improved layout design.
