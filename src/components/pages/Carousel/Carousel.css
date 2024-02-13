@@ -1,0 +1,11 @@
+.carousel-container {
+    width: 100%;
+    height: 70vh; /* Set the desired height as a percentage of the viewport height */
+    overflow: hidden; /* Hide overflow to ensure images don't extend beyond the container */
+}
+
+.carousel-inner img {
+    width: 100%; /* Make images fill the entire width of the container */
+    height: 100%; /* Ensure images maintain their aspect ratio */
+    object-fit: contain; /* Scale and crop images to fill the container */
+}

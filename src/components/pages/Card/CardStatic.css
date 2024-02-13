@@ -1,0 +1,33 @@
+.card-static-body{
+  background: linear-gradient(to top, #000000 0%, #32303c 60%, #ffffff 100%);
+}
+
+.card-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 2%;
+  }
+  
+  .card-div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Add this if you want a specific width for each card */
+  .card {
+    width: 18rem;
+  }
+  
+  .heart-cover:hover{
+    background-color: rgb(190, 211, 211);
+  }
+
+  .heart-color-change{
+    color: white;
+    background-color: rgb(196, 99, 20);
+  }

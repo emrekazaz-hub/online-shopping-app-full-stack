@@ -1,0 +1,47 @@
+/* UserAdress.css */
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 70%; /* Kartın genişliği */
+    max-width: 140vh; /* Maksimum genişlik */
+    height: 60vh; /* Kartın yüksekliği, viewport'un %70'i kadar */
+    margin: auto; /* Kartı ortalamak için */
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.5);
+}
+
+.adress-form {
+    border-color: black;
+}
+
+.deneme {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-div-adress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ana divin yüksekliği viewport'un %100'ü kadar */
+}

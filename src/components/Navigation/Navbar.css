@@ -1,0 +1,131 @@
+.navbar {
+    background-color: rgb(8, 8, 12);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+nav a{
+    font-size: x-large;
+}
+
+.right-side{
+    display: flex;
+    justify-content: center;
+}
+
+.ul-list{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+    list-style: none;
+    text-decoration: none;
+    text-decoration: none;
+}
+
+.logo{
+    max-width: 120px;
+    min-height: 50px;
+}
+
+.a-tag{
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.a-tag:hover{
+    background-color: rgb(71, 71, 71);
+}
+
+.login-color{
+    color: aliceblue;
+}
+.login-color:hover{
+    background-color: rgb(71, 71, 71);
+}
+
+
+.search{
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    border-radius: 28px;
+    background-color: #f6f6f685;
+    width: 400px;
+    transition: background 0.25s;
+}
+
+.search:focus-within{
+    background-color:#f6f6f62a;
+    color: #f6f6f60a;
+}
+
+.search-box{
+    font-size: 15px;
+    font-family: 'Lexend', sans-serif;
+    margin-left: 14px;
+    outline: none;
+    border: none;
+    background: transparent;
+    flex: 1;
+    color: white;
+}
+
+.search-box::placeholder{
+color: rgb(82, 82, 82);
+}
+
+.search-icon{
+    color: white;
+}
+
+/* Navbar still remains unchanged */
+
+.ul-list2 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    position: absolute;
+    background-color: rgb(34, 34, 48);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1; /* Set a higher z-index value */
+}
+
+.ul-list:hover .ul-list2 {
+    display: block;
+}
+
+.ul-list2 li {
+    padding: 8px;
+}
+
+.ul-list2 a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+.ul-list2 a:hover {
+    background-color: #555;
+}
+
+.products-tag{
+    color: white;
+    text-decoration: none;
+}
+
+/* In your Navbar.css or a separate styles file */
+.cart-quantity {
+    font-size: 0.6rem;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0.1rem 0.3rem;
+    top: 0;
+    right: 0;
+}

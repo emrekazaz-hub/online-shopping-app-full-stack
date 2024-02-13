@@ -1,0 +1,14 @@
+.editGroup{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card:hover{
+    border-color: black;
+}
+
+.card-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
