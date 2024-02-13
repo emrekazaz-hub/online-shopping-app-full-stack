@@ -4,7 +4,8 @@
 
 To download and run the project, follow these steps:
 
-1.  Clone the project:
+1.  Clone the project and server:
+    git clone https://github.com/emrekazaz-hub/online-shopping-app-full-stack.git
     git clone https://github.com/emrekazaz-hub/online-shopping-server.git
 
 2.  Navigate to the project directory:
