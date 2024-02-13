@@ -1,35 +1,36 @@
-Online Shopping Application
-This project encompasses an online shopping application where users can perform various actions.
+# Online Shopping Application
 
-Downloading and Installing the Project
+## Downloading and Installing the Project
 
 To download and run the project, follow these steps:
 
-Clone the project:
-git clone https://github.com/emrekazaz-hub/online-shopping-server.git
+1.  Clone the project:
+    git clone https://github.com/emrekazaz-hub/online-shopping-server.git
 
-Navigate to the project directory:
-cd online-shopping-server
+2.  Navigate to the project directory:
+    cd online-shopping-server   
 
-Install necessary packages:
-npm install
+3.  Install necessary packages:
+    npm install
 
-Run the project:
-npm start
+4.  Run the project:
+    npm start
 
 
-Project Status and Objectives
+## Project Status and Objectives
 
 The project currently provides an interface where users can list products and perform various actions. Database operations are handled using Node.js and PostgreSQL.
 
-Completed tasks include:
 
-Listing products
-Adding/removing items to/from cart and favorites
+## Completed tasks include:
 
-Upcoming tasks:
+* Listing products
+* Adding/removing items to/from cart and favorites
 
-Implementing secure authentication and session management using JWT/cookies
-Integrating Google Maps API for address handling
-Fetching products from the database based on user authentication
-UI enhancements, including scroll animations (GSAP)
+
+## Upcoming tasks:
+
+* Implementing secure authentication and session management using JWT/cookies
+* Integrating Google Maps API for address handling
+* Fetching products from the database based on user authentication
+* UI enhancements, including scroll animations (GSAP)
