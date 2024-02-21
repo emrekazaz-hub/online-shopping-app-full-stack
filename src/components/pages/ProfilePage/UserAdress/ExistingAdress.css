@@ -1,0 +1,48 @@
+.userAdres-div{
+    display: flex;
+}
+
+.userAdres{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2%;
+}
+
+.userAdres-card-true{
+    background-color: aliceblue;
+    padding: 15px;
+    border: 2px solid green;
+}
+
+.userAdres-card-false{
+    background-color: aliceblue;
+    padding: 15px;
+    border: 2px solid grey;
+}
+
+.userAdres-img{
+    width: 100%;
+    height: 180px;
+}
+
+.userAdres-button-group{
+    display: flex;
+    justify-content: space-between;
+    height: 25px;
+}
+
+.userAdres-button{
+    background-color: transparent;
+    border: none;
+    background-color: white;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.userAdres-button:hover{
+    color: wheat;
+    border: 1px solid rgb(96, 96, 96);
+    background-color: rgb(255, 0, 0);
+}

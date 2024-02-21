@@ -10,6 +10,7 @@ const Login2 = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isCheckBoxSelected, setIsCheckBoxSelected] = useState(false);
     const notify = () => toast();
 
     const { handleNavigate, findSignedUser, isSignedIn, handleSignIn, handleSignUp } = useCart();
@@ -24,7 +25,7 @@ const Login2 = () => {
     const handleSignUpButton = (e) => {
         e.preventDefault();
 
-        handleSignUp(name, email, password);
+        handleSignUp(name, email, password,isCheckBoxSelected);
 
     }
 
@@ -54,6 +55,11 @@ const Login2 = () => {
                             <input className="input" type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} />
                             <input className="input" type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                             <input className="input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                            <div className='checkbox-role-group'>
+                                <h2 className='checkbox-role-h2'>I'm going to sell</h2>
+                                <input className='checkbox-role' type='checkbox' onClick={(e) => setIsCheckBoxSelected(e.target.checked)}></input>
+                            </div>
+                            
                             { /* <button className="butn" onClick={handleSignUp}>Sign Up</button> */}
                             <button className="butn" onClick={handleSignUpButton}>Sign Up</button>
                         </form>

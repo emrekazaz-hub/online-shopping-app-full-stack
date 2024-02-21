@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
 
-    const { cartItems, handleNavigate, isSignedIn, updateSignInStatus } = useCart();
+    const { cartItems, handleNavigate, isSignedIn, updateSignInStatus, isAdmin } = useCart();
 
     // calculate the total quantity of items in the cart
     const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -19,6 +19,14 @@ const Navbar = () => {
             updateSignInStatus(props);
         }
         handleNavigate('/login2');
+    }
+
+    const handleNavigateUserByRole = () => {
+        if(isAdmin === true){
+            handleNavigate('/adminPage')
+        }else{
+            handleNavigate('/profilePage');
+        }
     }
 
     return (
@@ -46,8 +54,10 @@ const Navbar = () => {
 
                 <div className='right-side'>
                     { /*<i className="btn bi-box-arrow-in-right login-color" onClick={() => handleNavigate('/login')}></i> */}
+                    <button onClick={() => handleNavigate('/gsapCard')}>go to aminate gsap</button>
                     <i className="btn bi-box-arrow-in-right login-color" title='signin/signout' onClick={handleClickLogout}></i>
-                    <i class="btn login-color bi-person-circle" title='profile' onClick={() => handleNavigate('/profilePage')}></i>
+                    <i class="btn login-color bi-person-circle" title='profile' onClick={handleNavigateUserByRole}></i>
+                    {console.log('is logged user admin : ', isAdmin)}
                     <i className="btn bi-heart login-color" title='favorites' onClick={() => handleNavigate('/favori')}></i>
                     <i className="btn bi-cart4 login-color" title='cart' onClick={() => handleNavigate('/shoppingcart')}>
                         {totalQuantity > 0 && <span className="cart-quantity">{totalQuantity}</span>}

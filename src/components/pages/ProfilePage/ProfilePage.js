@@ -4,10 +4,11 @@ import { useCart } from "../../CartContext/CartContext";
 import UserAdres from "./UserAdress/UserAdress";
 import UserPaymentInfo from "./UserPaymentInfo/UserPaymentInfo";
 import UserPreviousOrders from "./UserPreviousOrders/UserPreviousOrders";
+import Error404 from '../WarningPages/Error404';
 
 const ProfilePage = () => {
 
-    const { handleNavigate, signedUser, isSignedIn, fetchCardInformation } = useCart();
+    const { handleNavigate, signedUser, isSignedIn, fetchCardInformation, getUserAdress, isAdmin } = useCart();
 
     const [onClickChange, setOnClickChange] = useState(false);
     const [hasUserCard, setHasUserCard] = useState();
@@ -23,6 +24,12 @@ const ProfilePage = () => {
         fetchCardInformation();
     }
 
+    const handleAdressClick = (e) => {
+        e.preventDefault();
+        getUserAdress();
+    }
+    
+
     return (
         <div>
             <h2 className="profile-header"></h2>
@@ -32,7 +39,7 @@ const ProfilePage = () => {
                         <li className="sidebar-ul-list-row" onClick={() => handleNavigate('/profilePage')}>
                             User Info
                         </li>
-                        <li className="sidebar-ul-list-row" onClick={() => handleNavigate('/userAdress')}>
+                        <li className="sidebar-ul-list-row" onClick={handleAdressClick}>
                             My Registered Addresses
                         </li>
                         <li className="sidebar-ul-list-row" onClick={handlePaymentCardClick}>
@@ -45,7 +52,8 @@ const ProfilePage = () => {
                 </div>
 
                 <div>
-                    <h2>{isSignedIn ? `${signedUser.name}'s profile` : "sign in pls"}</h2>
+                    <h2>{isSignedIn ? `${signedUser.name}'s profile` : <Error404 />}</h2>
+                    {console.log(isAdmin)}
                 </div>
 
                 <div>

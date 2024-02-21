@@ -14,6 +14,13 @@ import UserAdress from './ProfilePage/UserAdress/UserAdress';
 import UserPaymentInfo from './ProfilePage/UserPaymentInfo/UserPaymentInfo';
 import UserPreviousOrder from './ProfilePage/UserPreviousOrders/UserPreviousOrders';
 import ExistingPaymentCard from './ProfilePage/UserPaymentInfo/ExistingPaymentCard';
+import ExistingAdress from './ProfilePage/UserAdress/ExistingAdress';
+import GsapPlayground from './GsapPlayground/GsapPlayground';
+import GsapCard from './GsapPlayground/GsapPlayground2';
+import AdminPage from '../pages/AdminPage/AdminPage';
+import Reload from './WarningPages/Reload';
+import Empty from './WarningPages/Empty';
+import Error404 from './WarningPages/Error404';
 
 const RootPage = () => {
     return (
@@ -32,6 +39,13 @@ const RootPage = () => {
                     <Route path='/userPayment' element={<UserPaymentInfo />} />
                     <Route path='/userPreviousOrder' element={<UserPreviousOrder />} />
                     <Route path='/existingPaymentCard' element={<ExistingPaymentCard />} />
+                    <Route path='/existingAdress' element={<ExistingAdress />} />
+                    <Route path='/animationPage' element={<GsapPlayground />} />
+                    <Route path='/gsapCard' element={<GsapCard />} />
+                    <Route path='/adminPage' element={<AdminPage />} />
+                    <Route path='/reolad' element={<Reload />} />
+                    <Route path='/empty' element={<Empty />} />
+                    <Route path='/error404' element={<Error404 />} />
                 </Routes>
             </CartProvider>
         </Router>

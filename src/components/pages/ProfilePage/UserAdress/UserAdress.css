@@ -1,20 +1,4 @@
 /* UserAdress.css */
-
-.card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 70%; /* Kartın genişliği */
-    max-width: 140vh; /* Maksimum genişlik */
-    height: 60vh; /* Kartın yüksekliği, viewport'un %70'i kadar */
-    margin: auto; /* Kartı ortalamak için */
-}
-
-.form-label {
-    font-weight: bold;
-}
-
 .btn-primary {
     background-color: #007bff;
     border-color: #007bff;

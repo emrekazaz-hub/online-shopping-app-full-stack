@@ -7,15 +7,30 @@ import axios from 'axios';
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+    //cart
     const [cartItems, setCartItems] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [favColor, setFavColor] = useState(false);
     const [favToast, setFavToast] = useState(false);
+
+    //signin
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [signedUser, setSignedUser] = useState('');
+    const [signedUserAdress, setSignedUserAdress] = useState([]);
+    const [isAdressSelected, setIsAdressSelected] = useState();
+    const [isAdmin, setIsAdmin] = useState();
+
+    //admin
+
 
     const navigate = useNavigate();
+    const handleNavigate = (url) => {
+        navigate(url);
+    }
 
+    // ##########################################################################################################################################
+    //                                         LOGIN SECTION START
+    // ##########################################################################################################################################
     const updateSignInStatus = (props) => {
         setIsSignedIn(false);
         toast(`see you soon ${signedUser.name}`);
@@ -39,6 +54,7 @@ export const CartProvider = ({ children }) => {
                     console.log('logged user data', data);
                     setSignedUser(data.user);
                     setIsSignedIn(true);
+                    setIsAdmin(data.user.role);
                 }
                 else if (!email || !password) {
                     alert('please fill all fields');
@@ -53,14 +69,15 @@ export const CartProvider = ({ children }) => {
     }
 
     // db signup
-    const handleSignUp = (name, email, password) => {
+    const handleSignUp = (name, email, password, isCheckBoxSelected) => {
         fetch('http://localhost:3000/login/signup', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 userName: name,
                 userEmail: email,
-                userPassword: password
+                userPassword: password,
+                isCheckBoxSelected
             })
 
         })
@@ -81,11 +98,19 @@ export const CartProvider = ({ children }) => {
                     setSignedUser(data.user);
                     setIsSignedIn(true);
                     handleNavigate('/');
+                    setIsAdmin(data.user.role);
                 }
             })
     }
 
+    // ##########################################################################################################################################
+    //                                         LOGIN SECTION END
+    // ##########################################################################################################################################
 
+
+    // ##########################################################################################################################################
+    //                                         CARD SECTION START
+    // ##########################################################################################################################################
     // db card fetch
     const fetchCardInformation = () => {
         let userId = signedUser.id;
@@ -162,7 +187,120 @@ export const CartProvider = ({ children }) => {
         handleNavigate('/userPayment');
     }
 
+    // ##########################################################################################################################################
+    //                                         CARD SECTION END
+    // ##########################################################################################################################################
 
+
+    // ##########################################################################################################################################
+    //                                         ADRESS SECTION START
+    // ##########################################################################################################################################
+    // db get adress
+    const getUserAdress = () => {
+        let userId = signedUser.id;
+        fetch(`http://localhost:3000/profile/adress/${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'adressGet') {
+                    console.log('Logged Users Adress : ', data.userAdress);
+                    handleNavigate('/existingAdress');
+                    setSignedUserAdress(data.userAdress);
+                } else if (data.status === 'noAdressFound') {
+                    console.log('user has no adres');
+                    handleNavigate('/userAdress');
+                } else if (!isSignedIn) {
+                    handleNavigate('/userAdress');
+                }
+            })
+            .catch(err => {
+                console.log('fetch isleminde sorun oldu : ', err);
+            });
+    }
+
+
+    // db fetchAdress
+    const addAdressToDatabase = (userEmail, userAdress, userAdress2, userCity, userAdressState, userZip) => {
+        let userId = signedUser.id;
+
+        fetch(`http://localhost:3000/profile/adress-new/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId,
+                userEmail,
+                userAdress,
+                userAdress2,
+                userCity,
+                userAdressState,
+                userZip
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'adress-success') {
+                    console.log('adres eklendi :');
+                    toast.success('your adres added successfuly');
+                    handleNavigate('/existingAdress');
+                } else {
+                    console.log('cannot add the adress');
+                    toast.error('can not add the adress');
+                }
+            })
+    }
+
+    const handleAddNewAdress = () => {
+        handleNavigate('/userAdress');
+    }
+
+    // ##########################################################################################################################################
+    //                                         ADMiN SECTION END
+    // ##########################################################################################################################################
+
+
+    // ##########################################################################################################################################
+    //                                         ADMiN SECTION START
+    // ##########################################################################################################################################
+
+    const addProduct = () => {
+
+    }
+
+    const deleteProduct = () => {
+
+    }
+
+    const getProducts = () => {
+
+    }
+
+    const getPurchasedProductList = () => {
+
+    }
+
+    // ##########################################################################################################################################
+    //                                         ADMiN SECTION End
+    // ##########################################################################################################################################
+
+
+    
+    // ##########################################################################################################################################
+    //                                         SEARCH SECTION Start
+    // ##########################################################################################################################################
+
+    const searchProductFromDb = () => {
+
+    }
+    
+    // ##########################################################################################################################################
+    //                                         SEARCH SECTION End
+    // ##########################################################################################################################################
+
+
+    // ##########################################################################################################################################
+    //                                         CART SECTION START
+    // ##########################################################################################################################################
     // Örnek addToCart fonksiyonu
     const addToCart = (product) => {
         const productExist = cartItems.find((item) => item.productId === product.productId);
@@ -202,9 +340,7 @@ export const CartProvider = ({ children }) => {
         return totalPrice;
     };
 
-    const handleNavigate = (url) => {
-        navigate(url);
-    }
+
 
     const setAddFavori = (product) => {
         const isAlreadyFavorited = favorites.some((fav) => fav.productId === product.productId);
@@ -224,9 +360,9 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    /* Bu Bolum Crerit card bolumu icin 
-    #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   # 
-    */
+    // ##########################################################################################################################################
+    //                                         CART SECTION END
+    // ##########################################################################################################################################
 
 
 
@@ -249,6 +385,13 @@ export const CartProvider = ({ children }) => {
             fetchCardInformation,
             deletePaymentCard,
             addPaymentCard,
+            getUserAdress,
+            addAdressToDatabase,
+            signedUserAdress,
+            handleAddNewAdress,
+            isAdressSelected,
+            isAdmin,
+
         }}>
             {children}
         </CartContext.Provider>
