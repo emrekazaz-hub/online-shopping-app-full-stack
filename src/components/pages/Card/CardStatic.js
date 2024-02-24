@@ -6,11 +6,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CardStatic = () => {
-    const { addToCart, setAddFavori, favorites } = useCart();
-    const [products, setProducts] = useState([]);
+    const { addToCart, setAddFavori, favorites, products, getProductsForUser } = useCart();
 
     useEffect(() => {
-        setProducts(fetchProducts());
+        getProductsForUser();
     }, []);
 
     const handleBuyClick = (product) => {
@@ -28,27 +27,27 @@ const CardStatic = () => {
                     <ToastContainer />
                     <div className="card-div" style={{ gap: '2rem', padding: '5rem' }}>
                         {products.map((product) => (
-                            <div key={product.productId} className="card" style={{ width: '18rem' }}>
+                            <div key={product.productid} className="card" style={{ width: '18rem' }}>
                                 <div className="card-img-top">
-                                    <img src={product.productImage} className="card-img-top" alt="..."></img>
+                                    <img src={product.image_url} className="card-img-top" alt="..."></img>
                                 </div>
 
                                 <div className="card-body">
-                                    <h5>{product.productName}</h5>
+                                    <h5>{product.productname}</h5>
 
                                     <div className="details">
-                                        <p className="card-text">{product.productDetails}</p>
+                                        <p className="card-text">{product.description}</p>
                                     </div>
 
                                     <div className="price">
-                                        <h4>price: {product.productPrice}</h4>
+                                        <h4>price: ${product.price}</h4>
                                     </div>
 
                                     <div className="button-card">
                                         <button onClick={() => handleBuyClick(product)} className="btn btn-primary">Buy</button>
                                         <i
                                             onClick={() => handleAddToFavorites(product)}
-                                            className={`btn bi-heart heart-cover ${(favorites.some((fav) => fav.productId === product.productId && fav.favColor)) ? 'heart-color-change' : ''}`}
+                                            className={`btn bi-heart heart-cover ${(favorites.some((fav) => fav.productid === product.productid && fav.favColor)) ? 'heart-color-change' : ''}`}
                                         ></i>
                                     </div>
                                 </div>

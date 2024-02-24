@@ -52,7 +52,6 @@ const UserPaymentInfo = () => {
             .then(data => {
                 console.log(data);
                 if (data.status === 'addnewcard') {
-                    console.log('Your card has been added successfully');
                     toast('Your card has been added successfully');
                 }
                 if (data.status === 'erraddcard') {

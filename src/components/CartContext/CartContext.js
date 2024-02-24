@@ -21,7 +21,8 @@ export const CartProvider = ({ children }) => {
     const [isAdmin, setIsAdmin] = useState();
 
     //admin
-
+    const [products, setProducts] = useState([]);
+    const [purchasedProducts, setPurchasedProducts] = useState([]);
 
     const navigate = useNavigate();
     const handleNavigate = (url) => {
@@ -51,7 +52,6 @@ export const CartProvider = ({ children }) => {
                 if (data.status === 'success') {
                     toast(`welcome back ${data.user.name}`);
                     handleNavigate('/');
-                    console.log('logged user data', data);
                     setSignedUser(data.user);
                     setIsSignedIn(true);
                     setIsAdmin(data.user.role);
@@ -93,7 +93,6 @@ export const CartProvider = ({ children }) => {
                 }
 
                 else if (data.status === 'addUser') {
-                    console.log('kullanici eklendi');
                     toast(`welcome back ${data.user.name}`);
                     setSignedUser(data.user);
                     setIsSignedIn(true);
@@ -119,14 +118,11 @@ export const CartProvider = ({ children }) => {
             .then(res => res.json())
             .then(data => {
                 // Kart bilgilerini almak için yapılan işlemler
-                console.log('Card information:', data);
                 if (data.status === 'cardfalse') {
-                    console.log('user has no card !!!');
                     return;
                 }
 
                 else if (data.status === 'cardtrue') {
-                    console.log('user has card');
                     handleNavigate('/existingPaymentCard');
                 }
             })
@@ -154,13 +150,13 @@ export const CartProvider = ({ children }) => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 if (data.status === 'addnewcard') {
-                    console.log('kart eklendi');
+                    toast.success('your card has been added successfully');
+                    toast.info('if you can`t see your card please reclick to your card profile ^^');
                     return;
                 }
                 if (data.status === 'erraddcard') {
-                    console.log('kart eklerken bir hata olustu');
+                    toast.error('error while adding card');
                 }
             })
             .catch(error => {
@@ -175,7 +171,6 @@ export const CartProvider = ({ children }) => {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success-delete') {
-                    console.log('Your card has been successfully deleted');
                     toast('Your card has been successfully deleted');
                 } else {
                     console.log('cannot delete the card');
@@ -202,11 +197,9 @@ export const CartProvider = ({ children }) => {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'adressGet') {
-                    console.log('Logged Users Adress : ', data.userAdress);
                     handleNavigate('/existingAdress');
                     setSignedUserAdress(data.userAdress);
                 } else if (data.status === 'noAdressFound') {
-                    console.log('user has no adres');
                     handleNavigate('/userAdress');
                 } else if (!isSignedIn) {
                     handleNavigate('/userAdress');
@@ -240,7 +233,6 @@ export const CartProvider = ({ children }) => {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'adress-success') {
-                    console.log('adres eklendi :');
                     toast.success('your adres added successfuly');
                     handleNavigate('/existingAdress');
                 } else {
@@ -255,7 +247,7 @@ export const CartProvider = ({ children }) => {
     }
 
     // ##########################################################################################################################################
-    //                                         ADMiN SECTION END
+    //                                         ADRESS SECTION END
     // ##########################################################################################################################################
 
 
@@ -263,7 +255,32 @@ export const CartProvider = ({ children }) => {
     //                                         ADMiN SECTION START
     // ##########################################################################################################################################
 
-    const addProduct = () => {
+    const addProduct = (productName, productDescription, productPrice, productQuantity, selectedCategory, selectedSubCategory, productImage) => {
+        const userId = signedUser.id;
+        fetch(`http://localhost:3000/profile/admin/addProduct/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId,
+                productName,
+                productDescription,
+                productPrice,
+                productQuantity,
+                selectedCategory,
+                selectedSubCategory,
+                productImage
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'productAdded') {
+                    toast.success('product has been added');
+                } else if (data.status === 'productNotAdded') {
+                    toast.error('somathing went wrong');
+                }
+            })
 
     }
 
@@ -272,11 +289,46 @@ export const CartProvider = ({ children }) => {
     }
 
     const getProducts = () => {
+        const userId = signedUser.id;
+        fetch(`http://localhost:3000/profile/admin/getProduct/${userId}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'getProducts') {
+                    setProducts(data.products);
+                } else if (data.status === 'cannotGetProducts') {
+                    console.log('urunler alinamadi');
+                }
+            })
+    }
 
+
+    const getProductsForUser = () => {
+
+        const userId = signedUser.id;
+        fetch(`http://localhost:3000/profile/getProduct/${userId}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'getProducts') {
+                    setProducts(data.products);
+                } else if (data.status === 'cannotGetProducts') {
+                    console.log('urunler alinamadi');
+                }
+            })
     }
 
     const getPurchasedProductList = () => {
+        const userId = signedUser.id;
 
+        fetch(`http://localhost:3000/profile/admin/purchasedProducts/${userId}`)
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === 'getPurchasedProducts'){
+                console.log('backendden basariyla veri alindi. Alinan veri :', data.purchasedProducts);
+                setPurchasedProducts(data.purchasedProducts);
+            }else if(data.status === 'cannotGetPurchasedProducts'){
+                console.log('backedndden veri alinamadi' );
+            }
+        })
     }
 
     // ##########################################################################################################################################
@@ -284,7 +336,7 @@ export const CartProvider = ({ children }) => {
     // ##########################################################################################################################################
 
 
-    
+
     // ##########################################################################################################################################
     //                                         SEARCH SECTION Start
     // ##########################################################################################################################################
@@ -292,9 +344,50 @@ export const CartProvider = ({ children }) => {
     const searchProductFromDb = () => {
 
     }
-    
+
+    const listByCategory = () => {
+
+    }
+
+    const listBySubCategory = () => {
+
+    }
+
+    const openModal = () => {
+
+    }
+
+    const viewProductPage = () => {
+
+    }
+
     // ##########################################################################################################################################
     //                                         SEARCH SECTION End
+    // ##########################################################################################################################################
+
+
+    // ##########################################################################################################################################
+    //                                         Payment SECTION Start
+    // ##########################################################################################################################################
+
+    const getCardForPayment = () => {
+
+    }
+
+    const getCartItems = () => {
+
+    }
+
+    const listApprovedCartItems = () => {
+
+    }
+
+    const paymnet = () => {
+
+    }
+
+    // ##########################################################################################################################################
+    //                                         Payment SECTION End
     // ##########################################################################################################################################
 
 
@@ -303,12 +396,12 @@ export const CartProvider = ({ children }) => {
     // ##########################################################################################################################################
     // Örnek addToCart fonksiyonu
     const addToCart = (product) => {
-        const productExist = cartItems.find((item) => item.productId === product.productId);
+        const productExist = cartItems.find((item) => item.productid === product.productid);
         toast('added to cart');
         if (productExist) {
             setCartItems(
                 cartItems.map((item) =>
-                    item.productId === product.productId
+                    item.productid === product.productid
                         ? { ...productExist, quantity: productExist.quantity + 1 }
                         : item
                 )
@@ -316,16 +409,14 @@ export const CartProvider = ({ children }) => {
         } else {
             setCartItems([...cartItems, { ...product, quantity: 1 }]);
         }
-        // ilk calisir hali :
-        //     setCartItems((prevCartItems) => [...prevCartItems, product]);
     };
 
     const removeCart = () => {
         setCartItems([]);
     };
 
-    const removeItem = (productId) => {
-        setCartItems(cartItems.filter((item) => item.productId !== productId));
+    const removeItem = (productid) => {
+        setCartItems(cartItems.filter((item) => item.productid !== productid));
     };
 
     const confirmCart = () => {
@@ -391,6 +482,12 @@ export const CartProvider = ({ children }) => {
             handleAddNewAdress,
             isAdressSelected,
             isAdmin,
+            addProduct,
+            products,
+            getProducts,
+            getProductsForUser,
+            getPurchasedProductList,
+            purchasedProducts,
 
         }}>
             {children}

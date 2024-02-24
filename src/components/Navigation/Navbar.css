@@ -35,6 +35,7 @@ nav a{
 .a-tag{
     color: aliceblue;
     text-decoration: none;
+    font-size: 15px;
 }
 
 .a-tag:hover{

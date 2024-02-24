@@ -1,0 +1,64 @@
+.admin-main-div{
+    background-color: #171717;
+    height: 100vh 100%;
+    color: white;
+    padding-top: 1.5rem;
+}
+
+.card-form{
+    background-color: #1f1f1f;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.37);
+}
+
+.admin-add-product-form{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 100%;
+    color: white;
+    height: 90vh;
+    width: 50%;
+    padding-left: 2%;
+}
+
+.label-group {
+    padding: 1rem;
+    max-width: 750px;
+    color: white;
+}
+
+.from-button-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.card-h2-tag{
+    color: white;
+}
+
+.admin-products{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.product-button-div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.admin-users-table-div{
+    width: 70%;
+}

@@ -15,23 +15,22 @@ const Navbar = () => {
 
     const handleClickLogout = (props) => {
         if (isSignedIn) {
-            console.log('giris yapildi mi ', isSignedIn);
             updateSignInStatus(props);
         }
         handleNavigate('/login2');
     }
 
     const handleNavigateUserByRole = () => {
-        if(isAdmin === true){
+        if (isAdmin === true) {
             handleNavigate('/adminPage')
-        }else{
+        } else {
             handleNavigate('/profilePage');
         }
     }
 
     return (
         <div>
-            <ToastContainer/>
+            <ToastContainer />
             <nav className='navbar'>
                 <div className='right-side'>
                     <img src={logo} className='logo' onClick={() => handleNavigate('/')} alt="logo"></img>
@@ -39,9 +38,9 @@ const Navbar = () => {
                         <li>
                             <a className='products-tag' href="#">Products</a>
                             <ul className='ul-list2'>
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 2</a></li>
-                                <li><a href="#">Link 3</a></li>
+                                <li><a className='a-tag' href="#">Electronic</a></li>
+                                <li><a className='a-tag' href="#">Clothes</a></li>
+                                <li><a className='a-tag' href="#">Shoe</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -57,7 +56,6 @@ const Navbar = () => {
                     <button onClick={() => handleNavigate('/gsapCard')}>go to aminate gsap</button>
                     <i className="btn bi-box-arrow-in-right login-color" title='signin/signout' onClick={handleClickLogout}></i>
                     <i class="btn login-color bi-person-circle" title='profile' onClick={handleNavigateUserByRole}></i>
-                    {console.log('is logged user admin : ', isAdmin)}
                     <i className="btn bi-heart login-color" title='favorites' onClick={() => handleNavigate('/favori')}></i>
                     <i className="btn bi-cart4 login-color" title='cart' onClick={() => handleNavigate('/shoppingcart')}>
                         {totalQuantity > 0 && <span className="cart-quantity">{totalQuantity}</span>}
