@@ -12,7 +12,7 @@
 }
 
 .paragraph-video-before{
-    opacity: 1;
+    opacity: 0;
     font-size: 80px;
     line-height: 1.05;
     font-weight: 600;
@@ -22,16 +22,16 @@
 }
 
 .paragraph-video-after{
-    opacity: 0;
+    opacity: 1;
 }
 
 .video-before{
-    opacity: 1;
+    opacity: 0;
     transition: all 1s;
     transition-delay: 1000ms;
     transform: translateX(10%);
 }
 
 .video-after{
-    opacity: 0;
+    opacity: 1;
 }
