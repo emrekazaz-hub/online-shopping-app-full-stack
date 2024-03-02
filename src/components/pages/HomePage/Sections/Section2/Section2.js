@@ -77,27 +77,6 @@ const Section2 = () => {
                 </div>
             </section>
 
-            <section className="section-iphone-video">
-                <div className="animation-box-iphone-video">
-                    <div>
-
-                        <div className="paragraph-header-div">
-                            <p className={`paragraph-video-before ${isVisible ? 'paragraph-video-after' : ''}`}>All-new 48MP Main camera. <br></br>
-                                For breathtaking, smile- <br></br>making picture taking.
-                                {console.log('for paragraf : ', isVisible)}
-                            </p>
-                        </div>
-
-                        <div>
-                            <video ref={videoRef} id="iphoneVideo" className={`video-before ${isVisible ? 'video-after' : ''}`}>
-                                <source src={video} type="video/mp4" />
-                            </video>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
         </div>
     );
 }
