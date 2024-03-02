@@ -1,0 +1,37 @@
+.section-iphone-video{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.paragraph-header-div{
+    display: block;
+    text-align: center;
+}
+
+.paragraph-video-before{
+    opacity: 1;
+    font-size: 80px;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    transition: all 1s;
+}
+
+.paragraph-video-after{
+    opacity: 0;
+}
+
+.video-before{
+    opacity: 1;
+    transition: all 1s;
+    transition-delay: 1000ms;
+    transform: translateX(10%);
+}
+
+.video-after{
+    opacity: 0;
+}

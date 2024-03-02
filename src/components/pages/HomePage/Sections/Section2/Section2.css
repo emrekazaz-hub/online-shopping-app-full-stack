@@ -1,0 +1,109 @@
+/* Section2.css */
+.section2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: black;
+}
+
+.animation-box-iphone-video{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+.animation-box-iphone-video div {
+    margin: 10px; /* İçerik arasında boşluk bırakmak için */
+}
+
+.img-before {
+    opacity: 0;
+    transform: translateX(-400%);
+    transition: ease-out all 1s;
+}
+
+.img-animation-after {
+    opacity: 1; 
+    transform: translateX(-30%);
+}
+
+.paragraph-group{
+    display: grid;
+    align-content: center;
+    max-width: 330px;
+    height: 100%;
+    color: white;
+}
+
+.paragraph-before{
+    opacity: 0;
+    transform: translateY(-200%);
+    transition: ease all 2s;
+    transition-delay: 0.5s;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;    
+}
+
+.paragraph-after{
+    opacity: 1;
+    transform: translateY(0%);
+}
+
+.paragraph-before2{
+    opacity: 0;
+    transform: translateY(-200%);
+    transition: ease all 2s;
+    transition-delay: 3s;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+}
+
+.paragraph-after2{
+    opacity: 1;
+    transform: translateX(0%);
+}
+
+.h2-tag{
+    color: white;
+}
+
+
+
+.section-iphone-video{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.paragraph-header-div{
+    display: block;
+    text-align: center;
+}
+
+.paragraph-video-before{
+    opacity: 1;
+    font-size: 80px;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    transition: all 1s;
+}
+
+.paragraph-video-after{
+    opacity: 0;
+}
+
+.video-before{
+    opacity: 1;
+    transition: all 1s;
+    transition-delay: 1000ms;
+    transform: translateX(10%);
+}
+
+.video-after{
+    opacity: 0;
+}

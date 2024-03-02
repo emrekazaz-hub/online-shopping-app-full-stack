@@ -60,5 +60,12 @@
 
 
 .admin-users-table-div{
-    width: 70%;
+    width: 90%;
+}
+
+.purchased-table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10rem;
 }

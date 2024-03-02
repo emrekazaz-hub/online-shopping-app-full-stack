@@ -124,68 +124,70 @@ const AdminPage = () => {
 
             </div>
 
-            <div>
+            <div >
                 <h2 style={{ paddingTop: "15rem", paddingBottom: "2rem" }}>you sell these products</h2>
-                <div className="admin-products">
-                    {products.map((product, index) => (
-                        <div key={index} class="card card-form label-group" style={{ width: '18rem' }}>
-                            <img src={`${product.image_url}`} class="card-img-top" alt={product.productname} style={{ maxWidth: "250px", maxHeight: "150px" }} />
-                            <div class="card-body">
-                                <h5 class="card-title">{product.productname}</h5>
-                                <p class="card-text">{product.description}</p>
-                                <p class="card-text">Category: {product.category_name}</p>
-                                <div className="product-button-div">
-                                    <button className="btn btn-secondary">edit</button>
-                                    <button className="btn btn-danger">delete</button>
+                <div>
+                    <div className="admin-products">
+                        {products.map((product, index) => (
+                            <div key={index} class="card card-form label-group" style={{ width: '18rem' }}>
+                                <img src={`${product.image_url}`} class="card-img-top" alt={product.productname} style={{ maxWidth: "250px", maxHeight: "150px" }} />
+                                <div class="card-body">
+                                    <h5 class="card-title">{product.productname}</h5>
+                                    <p class="card-text">{product.description}</p>
+                                    <p class="card-text">Category: {product.category_name}</p>
+                                    <div className="product-button-div">
+                                        <button className="btn btn-secondary">edit</button>
+                                        <button className="btn btn-danger">delete</button>
+                                    </div>
                                 </div>
+
                             </div>
-
-                        </div>
-                    ))}
-
+                        ))}
+                    </div>
                 </div>
             </div>
 
 
             <div>
                 <h2 style={{ paddingTop: "15rem", paddingBottom: "2rem" }}>Products purchased by users</h2>
-                <div className="admin-users-table-div">
-                    <table className="table table-dark table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">User Name</th>
-                                <th scope="col">Email Address</th>
-                                <th scope="col">Purchased Product</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Purchased Date</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {purchasedProducts.map((product, index) => (
-                                <tr key={index}>
-                                    <th scope="row">{index + 1}</th>
-                                    <td>{product.user_name}</td>
-                                    <td>{product.user_email}</td>
-                                    <td>{product.product_name}</td>
-                                    <td>{product.product_price}</td>
-                                    <td>{product.product_quantity}</td>
-                                    <td>{product.category_name}</td>
-                                    <td>{product.purchased_date}</td>
-                                    <td>
-                                        <button className="btn btn-secondary">edit</button>
-                                        <button className="btn btn-danger">delete</button>
-                                    </td>
+                <div className="purchased-table">
+                    <div className="admin-users-table-div">
+                        <table className="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">User Name</th>
+                                    <th scope="col">Email Address</th>
+                                    <th scope="col">Purchased Product</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Purchased Date</th>
+                                    <th scope="col"></th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {purchasedProducts.map((product, index) => (
+                                    <tr key={index}>
+                                        <th scope="row">{index + 1}</th>
+                                        <td>{product.user_name}</td>
+                                        <td>{product.user_email}</td>
+                                        <td>{product.product_name}</td>
+                                        <td>{product.product_price}</td>
+                                        <td>{product.product_quantity}</td>
+                                        <td>{product.category_name}</td>
+                                        <td>{product.purchased_date}</td>
+                                        <td>
+                                            <button className="btn btn-secondary">edit</button>
+                                            <button className="btn btn-danger">delete</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-
         </div>
     );
 }

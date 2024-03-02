@@ -21,6 +21,10 @@ import AdminPage from '../pages/AdminPage/AdminPage';
 import Reload from './WarningPages/Reload';
 import Empty from './WarningPages/Empty';
 import Error404 from './WarningPages/Error404';
+import Pagination from './PaymentPage/Pagination/Pagination';
+import PaginationAdress from './PaymentPage/PaymentCardPage/PaginationAddress/PaginationAddress';
+import PaginationCard from './PaymentPage/PaymentCardPage/PaginationCard/PaginationCard';
+import PaginationSuccess from './PaymentPage/PaymentCardPage/PaginationSuccess/PaginationSuccess';
 
 const RootPage = () => {
     return (
@@ -46,6 +50,10 @@ const RootPage = () => {
                     <Route path='/reolad' element={<Reload />} />
                     <Route path='/empty' element={<Empty />} />
                     <Route path='/error404' element={<Error404 />} />
+                    <Route path='/paginationCard' element={<PaginationCard />} />
+                    <Route path='/paginationAddress' element={<PaginationAdress />} />
+                    <Route path='/paginationSuccess' element={<PaginationSuccess />} />
+                    
                 </Routes>
             </CartProvider>
         </Router>

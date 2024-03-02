@@ -8,7 +8,7 @@ import Error404 from '../WarningPages/Error404';
 
 const ProfilePage = () => {
 
-    const { handleNavigate, signedUser, isSignedIn, fetchCardInformation, getUserAdress, isAdmin } = useCart();
+    const { handleNavigate, signedUser, isSignedIn, fetchCardInformation, getUserAdress, isAdmin, signedUserAdress, signedUserCard } = useCart();
 
     const [onClickChange, setOnClickChange] = useState(false);
     const [hasUserCard, setHasUserCard] = useState();
@@ -22,11 +22,21 @@ const ProfilePage = () => {
     const handlePaymentCardClick = (e) => {
         e.preventDefault();
         fetchCardInformation();
+        if(signedUserCard !== 0){
+            handleNavigate('/existingPaymentCard');
+        }else{
+            handleNavigate('/userPayment')
+        }
     }
 
     const handleAdressClick = (e) => {
         e.preventDefault();
         getUserAdress();
+        if(signedUserAdress !== 0){
+            handleNavigate('/existingAdress');
+        }else{
+            handleNavigate('/userAdress');
+        }
     }
     
 

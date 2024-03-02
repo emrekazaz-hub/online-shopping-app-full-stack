@@ -1,26 +1,33 @@
-import image1 from './shopping.jpg';
-import image2 from './shopping2.jpg';
-import image3 from './shopping3.jpg';
+import ImageCarosel from './imagesCarosel';
 import './Carousel.css';
+import React, { useEffect } from 'react';
+import { useCart } from '../../CartContext/CartContext';
+import iphoneImageCarousel from '../../Images/iphoneImages/carosel15Iphone.jpg';
 
 const Carousel = () => {
+
+    const { photos, fetchPhotos } = useCart();
+
+    /*
+    useEffect(() => {
+        fetchPhotos();
+    },[])    
+    */
+
     return (
         <div className='carousel-container'>
-
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src={image1} class="d-block w-100" alt="..." />
+            <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
+                <div className="carousel-inner">
+                    <div className="carousel-item active">
+                        <img src={iphoneImageCarousel} className="d-block w-100" alt="..." />
                     </div>
-                    <div class="carousel-item">
-                        <img src={image2} class="d-block w-100" alt="..." />
-                    </div>
-                    <div class="carousel-item">
-                        <img src= {image3} class="d-block w-100" alt="..." />
-                    </div>
+                    {ImageCarosel.map((photo, index) => (
+                        <div key={index} className='carousel-item'>
+                            <img src={photo} className="d-block w-100" alt={`Slide ${index}`} />
+                        </div>
+                    ))}
                 </div>
             </div>
-
         </div>
     );
 }

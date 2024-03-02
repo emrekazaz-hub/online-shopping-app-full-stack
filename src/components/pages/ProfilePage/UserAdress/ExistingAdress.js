@@ -21,7 +21,6 @@ const ExistingAdress = () => {
 
     const handleCardClick = (index) => {
         setSelectedCardIndex(index);
-        // Kartın index'ini kullanarak yapmak istediğiniz işlemi burada gerçekleştirebilirsiniz
     };
 
 

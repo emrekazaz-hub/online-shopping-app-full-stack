@@ -6,7 +6,12 @@ import Empty from '../WarningPages/Empty';
 // Gerekirse stil dosyanızı ekleyin
 
 const ShoppingCartPage = () => {
-    const { cartItems, calculateTotalPrice, removeCart, removeItem, confirmCart } = useCart();
+    const { cartItems, calculateTotalPrice, removeCart, removeItem, confirmCart, handleStepChange } = useCart();
+
+    const handleConfirmCart = () => {
+        confirmCart();
+        handleStepChange(0);
+    }
 
     return (
         <div>
@@ -42,6 +47,8 @@ const ShoppingCartPage = () => {
                                             <button className="btn btn-danger" onClick={() => removeItem(product.productid)}>remove item</button>
                                         </div>
 
+                                        {console.log('cart items : ', cartItems)}
+
                                     </div>
 
                                 </div>
@@ -55,7 +62,7 @@ const ShoppingCartPage = () => {
 
                     <div>
                         <button className="btn btn-danger" onClick={() => removeCart()}>remove cart</button>
-                        <button className="btn btn-success" onClick={() => confirmCart()}>Continue to payment</button>
+                        <button className="btn btn-success" onClick={handleConfirmCart}>Make the payment</button>
                     </div>
 
                 </div>

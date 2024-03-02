@@ -19,10 +19,17 @@ export const CartProvider = ({ children }) => {
     const [signedUserAdress, setSignedUserAdress] = useState([]);
     const [isAdressSelected, setIsAdressSelected] = useState();
     const [isAdmin, setIsAdmin] = useState();
+    const [signedUserCard, setSignedUserCard] = useState([]);
 
     //admin
     const [products, setProducts] = useState([]);
     const [purchasedProducts, setPurchasedProducts] = useState([]);
+
+    // payment
+    const [step, setStep] = useState();
+
+    // photos for carosel
+    const [photos, setPhotos] = useState([]);
 
     const navigate = useNavigate();
     const handleNavigate = (url) => {
@@ -118,12 +125,12 @@ export const CartProvider = ({ children }) => {
             .then(res => res.json())
             .then(data => {
                 // Kart bilgilerini almak için yapılan işlemler
-                if (data.status === 'cardfalse') {
-                    return;
+                if (data.status === 'cardtrue') {
+                    setSignedUserCard(data.cardInfo);
                 }
 
-                else if (data.status === 'cardtrue') {
-                    handleNavigate('/existingPaymentCard');
+                else if (data.status === 'cardfalse') {
+                    console.log('No card Found', data.status)
                 }
             })
             .catch(error => console.error('Error fetching card information:', error));
@@ -197,7 +204,6 @@ export const CartProvider = ({ children }) => {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'adressGet') {
-                    handleNavigate('/existingAdress');
                     setSignedUserAdress(data.userAdress);
                 } else if (data.status === 'noAdressFound') {
                     handleNavigate('/userAdress');
@@ -320,15 +326,15 @@ export const CartProvider = ({ children }) => {
         const userId = signedUser.id;
 
         fetch(`http://localhost:3000/profile/admin/purchasedProducts/${userId}`)
-        .then(res => res.json())
-        .then(data => {
-            if(data.status === 'getPurchasedProducts'){
-                console.log('backendden basariyla veri alindi. Alinan veri :', data.purchasedProducts);
-                setPurchasedProducts(data.purchasedProducts);
-            }else if(data.status === 'cannotGetPurchasedProducts'){
-                console.log('backedndden veri alinamadi' );
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'getPurchasedProducts') {
+                    console.log('backendden basariyla veri alindi. Alinan veri :', data.purchasedProducts);
+                    setPurchasedProducts(data.purchasedProducts);
+                } else if (data.status === 'cannotGetPurchasedProducts') {
+                    console.log('backedndden veri alinamadi');
+                }
+            })
     }
 
     // ##########################################################################################################################################
@@ -372,6 +378,10 @@ export const CartProvider = ({ children }) => {
 
     const getCardForPayment = () => {
 
+    }
+
+    const handleStepChange = (newStep) => {
+        setStep(newStep);
     }
 
     const getCartItems = () => {
@@ -426,7 +436,7 @@ export const CartProvider = ({ children }) => {
     const calculateTotalPrice = () => {
         let totalPrice = 0;
         cartItems.forEach((item) => {
-            totalPrice += item.productPrice * item.quantity;
+            totalPrice += item.product_price * item.quantity;
         });
         return totalPrice;
     };
@@ -455,6 +465,28 @@ export const CartProvider = ({ children }) => {
     //                                         CART SECTION END
     // ##########################################################################################################################################
 
+
+
+
+
+    // ##########################################################################################################################################
+    //                                         PHOTOS SECTION START
+    // ##########################################################################################################################################
+    const fetchPhotos = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/photos/carosel');
+            if (!response.ok) {
+                throw new Error('Failed to fetch photos');
+            }
+            const data = await response.json();
+            setPhotos(data);
+        } catch (error) {
+            console.error('Error fetching photos:', error);
+        }
+    };
+    // ##########################################################################################################################################
+    //                                         PHOTOS SECTION END
+    // ##########################################################################################################################################
 
 
     return (
@@ -488,6 +520,11 @@ export const CartProvider = ({ children }) => {
             getProductsForUser,
             getPurchasedProductList,
             purchasedProducts,
+            handleStepChange,
+            step,
+            signedUserCard,
+            photos,
+            fetchPhotos,
 
         }}>
             {children}

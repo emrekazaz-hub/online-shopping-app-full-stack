@@ -1,0 +1,33 @@
+/* Section2.css */
+.section1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.animation-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+.animation-box div {
+    margin: 10px; /* İçerik arasında boşluk bırakmak için */
+}
+
+.img-before-nike {
+    opacity: 0;
+    transform: translateX(-400%);
+    transition: ease-out all 3s;
+}
+
+.img-after-nike {
+    opacity: 1; 
+    transform: translateX(30%);
+}
+
+.nike-header{
+    font-size: 150px;
+}
