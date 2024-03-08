@@ -14,6 +14,11 @@ const PaginationCard = () => {
         handleNavigate('/paginationAddress');
     }
 
+    const handleBackClick = () => {
+        handleStepChange(0);
+        handleNavigate('/paymentCard');
+    }
+
 
     return (
         <div>
@@ -35,8 +40,11 @@ const PaginationCard = () => {
 
 
                 {console.log(signedUserCard)}
-
-                <button className='btn btn-dark' onClick={handleApproveClick}>Approve Credit Card</button>
+                
+                <div className='butn-group-payment'>
+                    <button className='btn btn-success' onClick={handleApproveClick}>Approve Items</button>
+                    <button className='btn btn-dark' onClick={handleBackClick}>Go Back</button>
+                </div>
             </div>
 
         </div>

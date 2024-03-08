@@ -36,3 +36,45 @@
     background-color: orange;
     color: white;
 }
+
+.payment-items-view-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5%;
+    gap: 25px;
+    border-radius: 25%;
+}
+
+.image-card{
+    max-height: 150px;
+    max-width: 250px;
+    padding: 0.5em;
+}
+
+.horizontal-card{
+    display: flex;
+    justify-content: space-around;
+    height: 200px;
+    width: 700px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+}
+
+.card-body-image-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-tag-payment{
+    display: flex;
+    align-items: center;
+}
+
+.butn-group-payment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}

@@ -27,9 +27,11 @@ export const CartProvider = ({ children }) => {
 
     // payment
     const [step, setStep] = useState();
+    const [ cartTotalPrice, setCartTotalPrice] = useState(0);
 
     // photos for carosel
     const [photos, setPhotos] = useState([]);
+    const [allow, setAllow] = useState(false);
 
     const navigate = useNavigate();
     const handleNavigate = (url) => {
@@ -127,6 +129,7 @@ export const CartProvider = ({ children }) => {
                 // Kart bilgilerini almak için yapılan işlemler
                 if (data.status === 'cardtrue') {
                     setSignedUserCard(data.cardInfo);
+                    console.log('kart alindi : ', data.cardInfo)
                 }
 
                 else if (data.status === 'cardfalse') {
@@ -376,25 +379,14 @@ export const CartProvider = ({ children }) => {
     //                                         Payment SECTION Start
     // ##########################################################################################################################################
 
-    const getCardForPayment = () => {
-
-    }
-
     const handleStepChange = (newStep) => {
         setStep(newStep);
     }
 
-    const getCartItems = () => {
+    const calculateCardBalance = () => {
 
     }
 
-    const listApprovedCartItems = () => {
-
-    }
-
-    const paymnet = () => {
-
-    }
 
     // ##########################################################################################################################################
     //                                         Payment SECTION End
@@ -433,21 +425,21 @@ export const CartProvider = ({ children }) => {
         handleNavigate('/paymentCard');
     };
 
-    const calculateTotalPrice = () => {
+    const calculateTotalPrice = (qyt) => {
         let totalPrice = 0;
         cartItems.forEach((item) => {
-            totalPrice += item.product_price * item.quantity;
+            totalPrice += item.price * item.quantity;
+            setCartTotalPrice(totalPrice);
         });
-        return totalPrice;
     };
 
 
 
     const setAddFavori = (product) => {
-        const isAlreadyFavorited = favorites.some((fav) => fav.productId === product.productId);
+        const isAlreadyFavorited = favorites.some((fav) => fav.productid === product.productid);
 
         if (isAlreadyFavorited) {
-            setFavorites(favorites.filter((item) => item.productId !== product.productId, [{ favColor: false }]));
+            setFavorites(favorites.filter((item) => item.productid !== product.productid, [{ favColor: false }]));
             setFavToast(true);
             if (setFavToast) {
                 toast('removed from favorites');
@@ -484,6 +476,11 @@ export const CartProvider = ({ children }) => {
             console.error('Error fetching photos:', error);
         }
     };
+
+
+    const handleAllow = () => {
+        setAllow(true);
+    }
     // ##########################################################################################################################################
     //                                         PHOTOS SECTION END
     // ##########################################################################################################################################
@@ -525,6 +522,9 @@ export const CartProvider = ({ children }) => {
             signedUserCard,
             photos,
             fetchPhotos,
+            handleAllow,
+            allow,
+            cartTotalPrice,
 
         }}>
             {children}

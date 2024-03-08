@@ -28,18 +28,18 @@ const Favori = () => {
                     {favorites.map((product) => (
                         <div key={product.productId} className="card" style={{ width: '18rem' }}>
                             <div className="card-img-top">
-                                <img src={product.productImage} className="card-img-top" alt="..."></img>
+                                <img src={product.image_url} className="card-img-top" alt="..."></img>
                             </div>
 
                             <div className="card-body">
-                                <h5>{product.productName}</h5>
+                                <h5>{product.productname}</h5>
 
                                 <div className="details">
-                                    <p className="card-tex">Details : {product.productDetails}</p>
+                                    <p className="card-tex">Details : {product.description}</p>
                                 </div>
 
                                 <div className="price">
-                                    <h4>price: {product.productPrice}</h4>
+                                    <h4>price: {product.price}</h4>
                                 </div>
 
                                 <div>

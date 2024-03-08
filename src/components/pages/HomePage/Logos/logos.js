@@ -1,27 +1,11 @@
-
+import apple from './appleLogo.jpg';
 import nike from './Nike.png';
 import boss from './Boss.jpg';
 import champion from './Champion.jpg';
-import tnf from './the-north-face.jpg';
+import Adidas from './adidas.jpg';
+import Boss from './Boss.jpg';
+import Puma from './Puma.jpg';
 
-const LogoClass = () => {
-
-    const logosArray = [
-        nike, boss, champion, tnf
-    ];
-
-    const logos = () => {
-        return logosArray.map((logo, index) => (
-            <img key={index} src={logo} />
-        ))
-    };
-
-    return (
-        <div>
-            {logos()}
-        </div>
-    );
-}
-
-export default LogoClass;
-
+export const logosArray = [
+    nike, boss, champion,apple,Boss,Puma, Adidas
+];

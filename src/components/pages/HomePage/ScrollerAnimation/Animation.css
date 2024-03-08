@@ -4,18 +4,8 @@
     align-items: center;
     padding-top: 3%;
     flex-wrap: wrap;
+    background-color: white;
 }
-
-.fixed-logos {
-  width: 150px;
-  height: 150px;
-
-}
-
-
-.scroller {
-    max-width: 80%;
-  }
   
   .scroller__inner {
     padding-block: 1rem;

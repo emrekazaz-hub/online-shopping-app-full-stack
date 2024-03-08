@@ -11,6 +11,11 @@ const PaginationAdress = () => {
         handleNavigate('/paginationSuccess');
     }
 
+    const handleBackClick = () => {
+        handleStepChange(1);
+        handleNavigate('/paginationCard');
+    }
+
     useEffect(() => {
         getUserAdress();
     }, [])
@@ -24,7 +29,7 @@ const PaginationAdress = () => {
                     <h2>adres info : </h2>
                     {signedUserAdress.map((adres, index) => (
                         <div key={index}>
-                            <h2>{index+1} adres</h2>
+                            <h2>{index + 1} adres</h2>
                             <h2>username : {signedUser.username}</h2>
                             <p>address : {adres.adress}</p>
                             <p>address 2 : {adres.adres2}</p>
@@ -34,7 +39,10 @@ const PaginationAdress = () => {
                 </div>
             </div>
 
-            <button className='btn btn-dark' onClick={handleApproveClick}>Approve Your Address</button>
+            <div className='butn-group-payment'>
+                <button className='btn btn-success' onClick={handleApproveClick}>Approve Items</button>
+                <button className='btn btn-dark' onClick={handleBackClick}>Go Back</button>
+            </div>
 
         </div>
     );

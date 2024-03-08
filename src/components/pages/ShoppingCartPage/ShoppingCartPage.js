@@ -2,16 +2,32 @@
 import { useCart } from '../../CartContext/CartContext';
 import './ShoppinCartPage.css';
 import Empty from '../WarningPages/Empty';
+import { useEffect, useState } from 'react';
 
 // Gerekirse stil dosyanızı ekleyin
 
 const ShoppingCartPage = () => {
-    const { cartItems, calculateTotalPrice, removeCart, removeItem, confirmCart, handleStepChange } = useCart();
+    const { cartItems, calculateTotalPrice, removeCart, removeItem, confirmCart, handleStepChange, fetchCardInformation, cartTotalPrice } = useCart();
 
+    const[ qyt, setQyt] = useState();
+    
     const handleConfirmCart = () => {
         confirmCart();
         handleStepChange(0);
     }
+
+    useEffect(() => {
+        calculateTotalPrice();
+    }, [removeItem, removeCart, qyt])
+
+    const handleIncrement = (product) => {
+        setQyt(product.quantity += 1);
+    };
+
+    const handleDecrement = (product) => {
+        setQyt(product.quantity -= 1);
+    };
+
 
     return (
         <div>
@@ -44,10 +60,13 @@ const ShoppingCartPage = () => {
                                         </div>
 
                                         <div>
+                                            <button className="btn" onClick={() => handleIncrement(product)}>+</button>
+                                            <button className="btn" onClick={() => handleDecrement(product)}>-</button>
+                                        </div>
+                                        <br />
+                                        <div>
                                             <button className="btn btn-danger" onClick={() => removeItem(product.productid)}>remove item</button>
                                         </div>
-
-                                        {console.log('cart items : ', cartItems)}
 
                                     </div>
 
@@ -55,9 +74,10 @@ const ShoppingCartPage = () => {
                             ))
                         }
                     </ul>
-                    
+
                     <div>
-                        <h2>total price : {calculateTotalPrice()}</h2>
+                        {console.log('total price : ', cartTotalPrice)}
+                        <h2>total price : {cartTotalPrice}</h2>
                     </div>
 
                     <div>

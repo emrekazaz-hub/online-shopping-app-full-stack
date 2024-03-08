@@ -1,6 +1,8 @@
 import './Animation.css';
 import Scroller from './Scroller';
 import LogoClass from '../Logos/logos';
+import imgDeneme from '../../../Images/iphoneImages/icon_enclosure.png';
+import { logosArray } from '../Logos/logos';
 
 const Animation = () => {
     return (
@@ -8,20 +10,12 @@ const Animation = () => {
             <Scroller />
             <div className="scroller" data-speed="fast">
                 <ul className="tag-list scroller__inner">
-                    <li>JS</li>
-                    <li>SSG</li>
-                    <li>webdev</li>
-                    <li>animation</li>
-                    <li>UI/UX</li>
+                    {logosArray.map((logo,index) => (
+                        <ul key={index}>
+                            <img src={logo}></img>
+                        </ul>
+                    ))}
                 </ul>
-            </div>
-
-            <div className="scroller" data-direction="right" data-speed="slow">
-                <div className="scroller__inner">
-                    <div className='fixed-logos'>
-                        <LogoClass />
-                    </div>
-                </div>
             </div>
         </div>
     );
