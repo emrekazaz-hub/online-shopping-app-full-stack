@@ -4,7 +4,7 @@ import './AdminPage.css';
 
 const AdminPage = () => {
 
-    const { signedUser, addProduct, products, getProducts, getPurchasedProductList, purchasedProducts } = useCart();
+    const { signedUser, addProduct, products, getProducts, getPurchasedProductList, purchasedProducts, addToPurchasedProductList } = useCart();
 
     const [subCategories, setSubCategories] = useState([]);
 

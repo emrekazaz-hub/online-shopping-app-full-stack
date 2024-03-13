@@ -1,0 +1,9 @@
+.pagination-adress-main-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-adres{
+    border: solid black 1px;
+}

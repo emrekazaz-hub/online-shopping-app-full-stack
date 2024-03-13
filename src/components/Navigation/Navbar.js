@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import logo from './logo2.jpg';
 import { useNavigate } from 'react-router-dom';
@@ -8,10 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
 
-    const { cartItems, handleNavigate, isSignedIn, updateSignInStatus, isAdmin } = useCart();
+    const { cartItems, handleNavigate, isSignedIn, updateSignInStatus, isAdmin, resetSignedUserInfo } = useCart();
 
     // calculate the total quantity of items in the cart
     const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+    useEffect(() => {
+        resetSignedUserInfo()
+    },[isSignedIn])
 
     const handleClickLogout = (props) => {
         if (isSignedIn) {

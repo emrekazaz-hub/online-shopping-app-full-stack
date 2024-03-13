@@ -7,17 +7,20 @@ import UserPaymentInfo from './UserPaymentInfo';
 
 const ExistingPaymentCard = () => {
 
-    const { isSignedIn, signedUser, deletePaymentCard, signedUserCard } = useCart('');
+    const { isSignedIn, signedUser, deletePaymentCard, signedUserCard, handleNavigate } = useCart();
 
     const handleDeleteCard = () => {
         deletePaymentCard();
     }
 
+
+
     return (
         <div className="main-page-div">
             <ProfilePage />
-            <div className='card-div'>{signedUserCard !== null ?
+            <div className='card-div'>{signedUserCard ?
                 <div>
+                    {console.log(signedUserCard)}
                     {signedUserCard.map((card, index) => (
                         <div className="card" style={{ width: '18rem' }}>
                             <div key={index} className="card-body">
@@ -34,7 +37,10 @@ const ExistingPaymentCard = () => {
                     ))}
                 </div>
                 :
-                <h2>You do not have a credit card </h2>
+                <div>
+                    <h2>You do not have a credit card </h2>
+                    <button className='btn btn-dark' onClick={() => handleNavigate('/userPayment')}>add credit card</button>
+                </div>
             }
             </div>
         </div>

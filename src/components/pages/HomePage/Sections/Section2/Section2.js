@@ -11,9 +11,7 @@ const Section2 = () => {
     const videoRef = useRef(null);
 
     const myRef = useRef();
-    console.log('isVible: ', isVisible)
     useEffect(() => {
-        console.log('myref : ', myRef.current);
         const observer = new IntersectionObserver((entries) => {
             const entry = entries[0];
             setIsVisible(entry.isIntersecting)

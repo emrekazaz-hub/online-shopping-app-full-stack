@@ -53,6 +53,7 @@ const UserPaymentInfo = () => {
                 console.log(data);
                 if (data.status === 'addnewcard') {
                     toast('Your card has been added successfully');
+                    toast.info('If your information is not automatically updated after registering your card, please click on my card information again.')
                 }
                 if (data.status === 'erraddcard') {
                     console.log('kart eklerken bir hata olustu');

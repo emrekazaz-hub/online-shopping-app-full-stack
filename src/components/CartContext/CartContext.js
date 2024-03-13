@@ -27,7 +27,7 @@ export const CartProvider = ({ children }) => {
 
     // payment
     const [step, setStep] = useState();
-    const [ cartTotalPrice, setCartTotalPrice] = useState(0);
+    const [cartTotalPrice, setCartTotalPrice] = useState(0);
 
     // photos for carosel
     const [photos, setPhotos] = useState([]);
@@ -44,6 +44,13 @@ export const CartProvider = ({ children }) => {
     const updateSignInStatus = (props) => {
         setIsSignedIn(false);
         toast(`see you soon ${signedUser.name}`);
+    }
+
+    const resetSignedUserInfo = () => {
+        if (signedUser && isSignedIn) {
+            setSignedUserAdress([]);
+            setSignedUserCard([])
+        }
     }
 
     // db signin
@@ -122,7 +129,7 @@ export const CartProvider = ({ children }) => {
     // db card fetch
     const fetchCardInformation = () => {
         let userId = signedUser.id;
-        handleNavigate('/userPayment');
+        console.log(userId);
         fetch(`http://localhost:3000/cardpayment/${userId}`)
             .then(res => res.json())
             .then(data => {
@@ -133,6 +140,7 @@ export const CartProvider = ({ children }) => {
                 }
 
                 else if (data.status === 'cardfalse') {
+                    setSignedUserCard(null)
                     console.log('No card Found', data.status)
                 }
             })
@@ -312,7 +320,6 @@ export const CartProvider = ({ children }) => {
 
 
     const getProductsForUser = () => {
-
         const userId = signedUser.id;
         fetch(`http://localhost:3000/profile/getProduct/${userId}`)
             .then(res => res.json())
@@ -327,7 +334,6 @@ export const CartProvider = ({ children }) => {
 
     const getPurchasedProductList = () => {
         const userId = signedUser.id;
-
         fetch(`http://localhost:3000/profile/admin/purchasedProducts/${userId}`)
             .then(res => res.json())
             .then(data => {
@@ -338,6 +344,40 @@ export const CartProvider = ({ children }) => {
                     console.log('backedndden veri alinamadi');
                 }
             })
+    }
+
+    const addToPurchasedProductList = (sellerId, productName, productPrice, productQuantity, selectedCategory) => {
+        const userId = signedUser.id;
+        const purchasedUser = signedUser.name;
+        const purchasedUserEmail = signedUser.email;
+        fetch(`http://localhost:3000/profile/admin/purchasedProducts/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId,
+                sellerId,
+                purchasedUser,
+                purchasedUserEmail,
+                productName,
+                productPrice,
+                productQuantity,
+                selectedCategory,
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                console.log('basariyla ekledik', data)
+            }else{
+                console.log('ekleyemedik')
+            }
+        })
+        .catch(err => {
+            console.log('error', err)
+        })
+
     }
 
     // ##########################################################################################################################################
@@ -525,6 +565,8 @@ export const CartProvider = ({ children }) => {
             handleAllow,
             allow,
             cartTotalPrice,
+            resetSignedUserInfo,
+            addToPurchasedProductList,
 
         }}>
             {children}

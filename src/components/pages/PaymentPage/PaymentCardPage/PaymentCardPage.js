@@ -24,10 +24,6 @@ const PaymentCardPage = () => {
   },[])
   */  
 
-  useEffect(() => {
-    
-  },[])
-
   return (
     <div className='main-div-payment'>
       <h2>PaymentCardPage</h2>

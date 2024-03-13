@@ -19,7 +19,6 @@ const Section3 = () => {
 
     const myRef = useRef();
     useEffect(() => {
-        console.log('myref : ', myRef.current);
         const observer = new IntersectionObserver((entries) => {
             const entry = entries[0];
             setIsVisible(entry.isIntersecting)
@@ -70,7 +69,6 @@ const Section3 = () => {
                         <div className="videoBox-div">
                             <video ref={videoRef} id="iphoneVideo" className={`video-before ${isVisible ? 'video-after' : ''}`} onMouseEnter={() => handleAllow()}>
                                 <source src={video2} type="video/mp4" />
-                                {console.log('allow : ', allow)}
                             </video>
                         </div>
 

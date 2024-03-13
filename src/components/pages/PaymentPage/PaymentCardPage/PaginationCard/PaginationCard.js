@@ -33,6 +33,7 @@ const PaginationCard = () => {
                                 <h5 className="card-title">Card Owner : {card.cardnamedb}</h5>
                                 <p className="card-text">card no : ************{card.cardnumberdb.substring(card.cardnumberdb.length - 4)}</p>
                                 <p className="card-date">{card.cardmonthdb}/{card.cardyerdb.substring(card.cardyerdb.length - 2)}</p>
+                                <p>balance : ${card.balance}</p>
                             </div>
                         </div>
                     ))}

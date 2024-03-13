@@ -21,24 +21,24 @@ const ProfilePage = () => {
 
     const handlePaymentCardClick = (e) => {
         e.preventDefault();
-        fetchCardInformation();
-        if(signedUserCard !== 0){
+        if (signedUserCard) {
             handleNavigate('/existingPaymentCard');
-        }else{
-            handleNavigate('/userPayment')
+        } else {
+            handleNavigate('/userPayment');
         }
+        fetchCardInformation();
+        console.log('signed user card status : ', signedUserCard)
     }
 
     const handleAdressClick = (e) => {
         e.preventDefault();
         getUserAdress();
-        if(signedUserAdress !== 0){
+        if (signedUserAdress !== 0) {
             handleNavigate('/existingAdress');
-        }else{
+        } else {
             handleNavigate('/userAdress');
         }
     }
-    
 
     return (
         <div>
@@ -63,13 +63,6 @@ const ProfilePage = () => {
 
                 <div>
                     <h2>{isSignedIn ? `${signedUser.name}'s profile` : <Error404 />}</h2>
-                    {console.log(isAdmin)}
-                </div>
-
-                <div>
-                    <div>
-                        { }
-                    </div>
                 </div>
             </div>
         </div>
