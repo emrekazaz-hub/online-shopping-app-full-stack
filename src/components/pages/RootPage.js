@@ -25,6 +25,7 @@ import Pagination from './PaymentPage/Pagination/Pagination';
 import PaginationAdress from './PaymentPage/PaymentCardPage/PaginationAddress/PaginationAddress';
 import PaginationCard from './PaymentPage/PaymentCardPage/PaginationCard/PaginationCard';
 import PaginationSuccess from './PaymentPage/PaymentCardPage/PaginationSuccess/PaginationSuccess';
+import SearchResultPage from './SearchResultPage/SearchResultPage';
 
 const RootPage = () => {
     return (
@@ -53,6 +54,7 @@ const RootPage = () => {
                     <Route path='/paginationCard' element={<PaginationCard />} />
                     <Route path='/paginationAddress' element={<PaginationAdress />} />
                     <Route path='/paginationSuccess' element={<PaginationSuccess />} />
+                    <Route path='/searchedItems' element={<SearchResultPage />}/>
                     
                 </Routes>
             </CartProvider>

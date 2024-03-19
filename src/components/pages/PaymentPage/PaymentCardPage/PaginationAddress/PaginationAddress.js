@@ -15,8 +15,8 @@ const PaginationAdress = () => {
 
     const handleApproveClick = () => {
         addToPurchasedProductList(sellerId, productName, productPrice, productQuantity, selectedCategory);
-        // handleStepChange(3);
-        // handleNavigate('/paginationSuccess');
+        handleStepChange(3);
+        handleNavigate('/paginationSuccess');
     }
 
     const handleBackClick = () => {

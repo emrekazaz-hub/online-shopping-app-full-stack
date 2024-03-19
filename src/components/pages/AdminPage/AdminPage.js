@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "../../CartContext/CartContext";
 import './AdminPage.css';
+import ChartAvg from "./ChartAvg/ChartAvg";
 
 const AdminPage = () => {
 
@@ -147,6 +148,12 @@ const AdminPage = () => {
                 </div>
             </div>
 
+            <div>
+                <h2 style={{paddingTop: '50px'}}>ChartAvg</h2>
+                <div className="chart-section">
+                    <ChartAvg />
+                </div>
+            </div>
 
             <div>
                 <h2 style={{ paddingTop: "15rem", paddingBottom: "2rem" }}>Products purchased by users</h2>

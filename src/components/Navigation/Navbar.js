@@ -8,14 +8,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
 
-    const { cartItems, handleNavigate, isSignedIn, updateSignInStatus, isAdmin, resetSignedUserInfo } = useCart();
+    const { cartItems, handleNavigate, isSignedIn, updateSignInStatus, isAdmin, resetSignedUserInfo, searchProductFromDb } = useCart();
+    const [searchboxitem, setSearchBoxItem] = useState([]);
 
     // calculate the total quantity of items in the cart
     const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
 
     useEffect(() => {
         resetSignedUserInfo()
-    },[isSignedIn])
+    }, [isSignedIn])
 
     const handleClickLogout = (props) => {
         if (isSignedIn) {
@@ -30,6 +31,15 @@ const Navbar = () => {
         } else {
             handleNavigate('/profilePage');
         }
+    }
+
+    const handleSearchButtonClick = () => {
+        if (searchboxitem.length === 0) {
+            return;
+        }else{
+            searchProductFromDb(searchboxitem);
+        }
+        
     }
 
     return (
@@ -51,8 +61,8 @@ const Navbar = () => {
                 </div>
 
                 <div className='middle search'>
-                    <input className='search-box' type='search' placeholder='search'></input>
-                    <i className="btn bi-search search-icon"></i>
+                    <input className='search-box' type='search' placeholder='search' onChange={(e) => setSearchBoxItem(e.target.value)}></input>
+                    <i className="btn bi-search search-icon" onClick={handleSearchButtonClick}></i>
                 </div>
 
                 <div className='right-side'>

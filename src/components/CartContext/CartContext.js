@@ -29,6 +29,9 @@ export const CartProvider = ({ children }) => {
     const [step, setStep] = useState();
     const [cartTotalPrice, setCartTotalPrice] = useState(0);
 
+    // search
+    const [searchedProducts, setSearchedProducts] = useState([]);
+
     // photos for carosel
     const [photos, setPhotos] = useState([]);
     const [allow, setAllow] = useState(false);
@@ -366,17 +369,17 @@ export const CartProvider = ({ children }) => {
                 selectedCategory,
             })
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data.status === 'success') {
-                console.log('basariyla ekledik', data)
-            }else{
-                console.log('ekleyemedik')
-            }
-        })
-        .catch(err => {
-            console.log('error', err)
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log('basariyla ekledik', data)
+                } else {
+                    console.log('ekleyemedik')
+                }
+            })
+            .catch(err => {
+                console.log('error', err)
+            })
 
     }
 
@@ -390,9 +393,28 @@ export const CartProvider = ({ children }) => {
     //                                         SEARCH SECTION Start
     // ##########################################################################################################################################
 
-    const searchProductFromDb = () => {
-
+    const searchProductFromDb = (searchboxitem) => {
+        fetch('http://localhost:3000/search/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+               searchboxitem
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'success') {
+                console.log('urunu aldik', data)
+                setSearchedProducts(data.product);
+                handleNavigate('/searchedItems')
+            }else{
+                console.log('urunu alamadik')
+            }
+        })
     }
+
 
     const listByCategory = () => {
 
@@ -567,6 +589,8 @@ export const CartProvider = ({ children }) => {
             cartTotalPrice,
             resetSignedUserInfo,
             addToPurchasedProductList,
+            searchProductFromDb,
+            searchedProducts,
 
         }}>
             {children}

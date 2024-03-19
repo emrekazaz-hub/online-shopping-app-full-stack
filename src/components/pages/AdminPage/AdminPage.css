@@ -69,3 +69,9 @@
     align-items: center;
     padding-bottom: 10rem;
 }
+
+.chart-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
