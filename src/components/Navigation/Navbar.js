@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Navbar.css';
 import logo from './logo2.jpg';
 import { useNavigate } from 'react-router-dom';
@@ -8,8 +8,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
 
-    const { cartItems, handleNavigate, isSignedIn, updateSignInStatus, isAdmin, resetSignedUserInfo, searchProductFromDb } = useCart();
+    const { cartItems, handleNavigate, isSignedIn, updateSignInStatus, isAdmin, resetSignedUserInfo, searchProductFromDb, fetchCategories, category, setCategory, listOfCategory } = useCart();
     const [searchboxitem, setSearchBoxItem] = useState([]);
+    const searchInputRef = useRef(null);
+
 
     // calculate the total quantity of items in the cart
     const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -17,6 +19,10 @@ const Navbar = () => {
     useEffect(() => {
         resetSignedUserInfo()
     }, [isSignedIn])
+
+    useEffect(() => {
+        searchInputRef.current.focus();
+    }, []);
 
     const handleClickLogout = (props) => {
         if (isSignedIn) {
@@ -36,11 +42,34 @@ const Navbar = () => {
     const handleSearchButtonClick = () => {
         if (searchboxitem.length === 0) {
             return;
-        }else{
+        } else {
             searchProductFromDb(searchboxitem);
         }
-        
+
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (searchboxitem.length === 0) {
+            return;
+        } else {
+            searchProductFromDb(searchboxitem);
+        }
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            handleSubmit(event);
+        }
+    };
+
+
+
+    const handleFetchCategory = (url) => {
+        fetchCategories(url, setCategory);
+        handleNavigate(`/${url}`);
+    }
+
 
     return (
         <div>
@@ -50,20 +79,30 @@ const Navbar = () => {
                     <img src={logo} className='logo' onClick={() => handleNavigate('/')} alt="logo"></img>
                     <ul className='ul-list'>
                         <li>
-                            <a className='products-tag' href="#">Products</a>
+                            <a className='products-tag' href="#">Categories</a>
                             <ul className='ul-list2'>
-                                <li><a className='a-tag' href="#">Electronic</a></li>
-                                <li><a className='a-tag' href="#">Clothes</a></li>
-                                <li><a className='a-tag' href="#">Shoe</a></li>
+                                <li><a className='a-tag' href="#" onClick={() => handleFetchCategory('Electronic')}>Electronic</a></li>
+                                <li><a className='a-tag' href="#" onClick={() => handleFetchCategory('Clothes')}>Clothes</a></li>
+                                <li><a className='a-tag' href="#" onClick={() => handleFetchCategory('Shoe')}>Shoe</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
 
-                <div className='middle search'>
-                    <input className='search-box' type='search' placeholder='search' onChange={(e) => setSearchBoxItem(e.target.value)}></input>
-                    <i className="btn bi-search search-icon" onClick={handleSearchButtonClick}></i>
-                </div>
+                <form onSubmit={handleSubmit}>
+                    <div className='middle search'>
+                        <input
+                            ref={searchInputRef}
+                            className='search-box'
+                            type='search'
+                            placeholder='search'
+                            value={searchboxitem}
+                            onChange={(e) => setSearchBoxItem(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                        />
+                        <i className="btn bi-search search-icon" onClick={handleSearchButtonClick}></i>
+                    </div>
+                </form>
 
                 <div className='right-side'>
                     { /*<i className="btn bi-box-arrow-in-right login-color" onClick={() => handleNavigate('/login')}></i> */}

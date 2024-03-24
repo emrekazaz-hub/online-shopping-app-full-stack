@@ -26,6 +26,11 @@ import PaginationAdress from './PaymentPage/PaymentCardPage/PaginationAddress/Pa
 import PaginationCard from './PaymentPage/PaymentCardPage/PaginationCard/PaginationCard';
 import PaginationSuccess from './PaymentPage/PaymentCardPage/PaginationSuccess/PaginationSuccess';
 import SearchResultPage from './SearchResultPage/SearchResultPage';
+import ProductPage from './ProductPage/ProductPage';
+import CategoryPage from './CategoryPages/CategoryPage';
+import CategoryClothes from './CategoryPages/CategoryClothes';
+import CategoryElectronic from './CategoryPages/CategoryElectronic';
+import CategoryShoe from './CategoryPages/CategoryShoe';
 
 const RootPage = () => {
     return (
@@ -55,6 +60,12 @@ const RootPage = () => {
                     <Route path='/paginationAddress' element={<PaginationAdress />} />
                     <Route path='/paginationSuccess' element={<PaginationSuccess />} />
                     <Route path='/searchedItems' element={<SearchResultPage />}/>
+                    <Route path='/searchedItems' element={<SearchResultPage />}/>
+                    <Route path='/productPage' element={<ProductPage />}/>
+                    <Route path='/categoryPage' element={<CategoryPage />}/>
+                    <Route path='/Shoe' element={<CategoryShoe />}/>
+                    <Route path='/Electronic' element={<CategoryElectronic />}/>
+                    <Route path='/Clothes' element={<CategoryClothes />}/>
                     
                 </Routes>
             </CartProvider>

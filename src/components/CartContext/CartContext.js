@@ -29,8 +29,12 @@ export const CartProvider = ({ children }) => {
     const [step, setStep] = useState();
     const [cartTotalPrice, setCartTotalPrice] = useState(0);
 
+    // Products
+    const [category, setCategory] = useState([]);
+
     // search
     const [searchedProducts, setSearchedProducts] = useState([]);
+    const [listOfCategory, setListOfCategory] = useState([]);
 
     // photos for carosel
     const [photos, setPhotos] = useState([]);
@@ -400,19 +404,19 @@ export const CartProvider = ({ children }) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-               searchboxitem
+                searchboxitem
             })
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data.status === 'success') {
-                console.log('urunu aldik', data)
-                setSearchedProducts(data.product);
-                handleNavigate('/searchedItems')
-            }else{
-                console.log('urunu alamadik')
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log('urunu aldik', data)
+                    setSearchedProducts(data.product);
+                    handleNavigate('/searchedItems')
+                } else {
+                    console.log('urunu alamadik')
+                }
+            })
     }
 
 
@@ -548,6 +552,40 @@ export const CartProvider = ({ children }) => {
     // ##########################################################################################################################################
 
 
+
+
+    // ##########################################################################################################################################
+    //                                         Product SECTION START
+    // ##########################################################################################################################################
+
+    const fetchCategories = (url, setCategory) => {
+        setCategory(url);
+        fetch('http://localhost:3000/product/category', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                category: url
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log(data.categoryFound)
+                    setListOfCategory(data.categoryFound);
+                } else {
+                    console.log('basaramadik abi')
+                }
+                
+            })
+    }
+
+    // ##########################################################################################################################################
+    //                                         Product SECTION END
+    // ##########################################################################################################################################
+
+
     return (
         <CartContext.Provider value={{
             cartItems,
@@ -591,7 +629,11 @@ export const CartProvider = ({ children }) => {
             addToPurchasedProductList,
             searchProductFromDb,
             searchedProducts,
-
+            fetchCategories,
+            category,
+            setCategory,
+            listOfCategory,
+            setListOfCategory,
         }}>
             {children}
         </CartContext.Provider>
