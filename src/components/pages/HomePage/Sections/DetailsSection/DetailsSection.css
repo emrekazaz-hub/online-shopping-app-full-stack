@@ -1,0 +1,46 @@
+.section-details{
+    padding-top: 5%;
+    display: block;
+    text-align: center;
+    background-color: white;
+}
+
+.detail-header{
+    font-size: 75px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.details-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: 5%
+}
+
+.detail{
+    width: 350px;
+    height: 200px;
+    display: grid;
+    place-items: center;
+
+}
+
+.icon-detail{
+    font-size: 70px;
+}
+
+.detail-p-tags{
+    display: flex;
+    gap: 1%;
+    font-size: 50px;
+}
+
+.before{
+    opacity: 0;
+}
+
+.after{
+    opacity: 1;
+    transition: all 2s;
+}

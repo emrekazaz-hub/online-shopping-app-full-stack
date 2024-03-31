@@ -106,7 +106,7 @@ const Navbar = () => {
 
                 <div className='right-side'>
                     { /*<i className="btn bi-box-arrow-in-right login-color" onClick={() => handleNavigate('/login')}></i> */}
-                    <button onClick={() => handleNavigate('/gsapCard')}>go to aminate gsap</button>
+                    {/* <button onClick={() => handleNavigate('/gsapCard')}>go to aminate gsap</button> */}
                     <i className="btn bi-box-arrow-in-right login-color" title='signin/signout' onClick={handleClickLogout}></i>
                     <i class="btn login-color bi-person-circle" title='profile' onClick={handleNavigateUserByRole}></i>
                     <i className="btn bi-heart login-color" title='favorites' onClick={() => handleNavigate('/favori')}></i>
