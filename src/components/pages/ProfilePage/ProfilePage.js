@@ -64,6 +64,7 @@ const ProfilePage = () => {
                 <div>
                     <h2>{isSignedIn ? `${signedUser.name}'s profile` : <Error404 />}</h2>
                 </div>
+
             </div>
         </div>
     );

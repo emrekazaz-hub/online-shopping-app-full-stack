@@ -29,3 +29,52 @@
     align-items: center;
     height: 100vh; /* Ana divin yüksekliği viewport'un %100'ü kadar */
 }
+
+.adress-div-google-maps{
+    padding-top: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.adress-from-google-maps{
+    width: 50%;
+    height: 100vh;
+    border: 2px solid rgb(102, 103, 102);
+    border-radius: 3%;
+    display: block;
+    text-align: center;
+    align-items: center;
+}
+
+.form-control-google-maps {
+    width: 50%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+}
+
+.input-group-google-maps{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button-group-google-maps{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3%;
+    gap: 2rem;
+}

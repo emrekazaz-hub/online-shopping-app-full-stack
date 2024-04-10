@@ -3,6 +3,7 @@ import './UserAdress.css';
 import '../ProfilePage.css';
 import React, { useState, useEffect } from "react";
 import { useCart } from "../../../CartContext/CartContext";
+import GoogleApi from "./GoogleApi";
 
 const UserAdress = () => {
 
@@ -20,10 +21,12 @@ const UserAdress = () => {
         addAdressToDatabase(userEmail, userAdress, userAdress2, userCity, userAdressState, userZip);
     }
 
+    
+
     return (
         <div className="main-div-adress">
             <ProfilePage />
-
+            <button onClick={() => handleNavigate('/GoogleAPI')}>To Map Page</button>            
             <div className="card">
                 <form className="row g-3 adress-form">
                     <div className="col-md-6">

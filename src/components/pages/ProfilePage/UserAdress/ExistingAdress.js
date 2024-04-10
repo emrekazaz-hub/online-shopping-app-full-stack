@@ -9,21 +9,22 @@ import Reload from '../../WarningPages/Reload';
 
 const ExistingAdress = () => {
 
+    //console.log(process.env.GOOGLE_MAPS_API_KEY)
+
     const [adress, setAdress] = useState([]);
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
 
-    const { signedUser, signedUserAdress, handleAddNewAdress, isAdressSelected } = useCart();
+    const { signedUser, signedUserAdress, handleAddNewAdress, isAdressSelected, getLocationForMap, coordinates, apiKey } = useCart();
     const [color, setColor] = useState();
 
     useEffect(() => {
         setAdress(signedUserAdress);
+        getLocationForMap(); // Koordinatları güncelle
     }, [signedUserAdress]);
 
     const handleCardClick = (index) => {
         setSelectedCardIndex(index);
     };
-
-
 
     return (
         <div className='userAdres-div'>
@@ -37,27 +38,31 @@ const ExistingAdress = () => {
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <button className='bi bi-plus-circle userAdres-button' onClick={handleAddNewAdress}> Add new adress</button>
                     </div>
+
                     {
                         adress.map((props, index) => {
                             return (
-                                <div key={index}>
-                                    <div className='userAdres'>
-                                        <div
-                                            className={`userAdres-card ${index === selectedCardIndex ? 'userAdres-card-true' : 'userAdres-card-false'}`}
-                                            onClick={() => handleCardClick(index)}
-                                        >
-                                            {console.log('index:', selectedCardIndex)}
-                                            <button className='bi bi-check-circle-fill userAdres-button' style={{ color: "green" }}></button>
-                                            <img src={mapimg} className='userAdres-img'></img>
-                                            <div className='userAdress-card-content'>
-                                                <p>Location : {props.adress}</p>
-                                                {console.log('secili mi ? ', props.selected_adress)}
-                                            </div>
-                                            <div className='userAdres-button-group'>
-                                                <button className='bi bi-trash userAdres-button'></button>
-                                                <button className='bi bi-pencil userAdres-button'></button>
-                                            </div>
+                                <div key={index} style={{ border: '1px solid rgb(176, 176, 176)' }}>
+                                    <div className='userAdres-google-api'>
+                                        <div>
+                                            <h2>{props.adress_username}</h2>
+                                            <p>{props.adress_adress}</p>
                                         </div>
+                                        <div>
+                                            <i className="bi bi-geo-alt-fill" style={{ fontSize: '30px' }}></i>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <iframe
+                                            width="550"
+                                            height="150"
+                                            style={{border: '0'}}
+                                            loading="lazy"
+                                            allowfullscreen
+                                            referrerpolicy="no-referrer-when-downgrade"
+                                            src={`https://www.google.com/maps/embed/v1/place?key=${apiKey.apikey}&q=${props.coordinate_lat},${props.coordinate_lng}`}>
+                                        </iframe>
                                     </div>
                                 </div>
                             );
@@ -72,10 +77,3 @@ const ExistingAdress = () => {
 }
 
 export default ExistingAdress;
-
-{/*
-                    <div className='userAdres-button-group'>
-                        <button className='bi bi-plus-circle userAdres-button'></button>
-                        <button className='bi bi-trash userAdres-button'></button>
-                    </div>
-                 */}

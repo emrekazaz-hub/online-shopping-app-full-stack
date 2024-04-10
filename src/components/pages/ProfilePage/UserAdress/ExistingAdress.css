@@ -46,3 +46,13 @@
     border: 1px solid rgb(96, 96, 96);
     background-color: rgb(255, 0, 0);
 }
+
+.userAdres-google-api{
+    border: 1px solid rgb(176, 176, 176);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4%;
+    width: 550px;
+    padding: 20px;
+}

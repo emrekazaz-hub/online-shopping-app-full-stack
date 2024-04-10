@@ -31,6 +31,8 @@ import CategoryPage from './CategoryPages/CategoryPage';
 import CategoryClothes from './CategoryPages/CategoryClothes';
 import CategoryElectronic from './CategoryPages/CategoryElectronic';
 import CategoryShoe from './CategoryPages/CategoryShoe';
+import GoogleApi from './ProfilePage/UserAdress/GoogleApi';
+import Deneme from './ProfilePage/UserAdress/Deneme';
 
 const RootPage = () => {
     return (
@@ -66,6 +68,8 @@ const RootPage = () => {
                     <Route path='/Shoe' element={<CategoryShoe />}/>
                     <Route path='/Electronic' element={<CategoryElectronic />}/>
                     <Route path='/Clothes' element={<CategoryClothes />}/>
+                    <Route path='/GoogleAPI' element={<GoogleApi />}/>
+                    <Route path='/Deneme' element={<Deneme />}/>
                     
                 </Routes>
             </CartProvider>

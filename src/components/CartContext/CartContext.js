@@ -21,6 +21,10 @@ export const CartProvider = ({ children }) => {
     const [isAdmin, setIsAdmin] = useState();
     const [signedUserCard, setSignedUserCard] = useState([]);
 
+    // google maps
+    const [coordinates, setCoordinates] = useState([]);
+    const [apiKey, setApiKey] = useState('');
+
     //admin
     const [products, setProducts] = useState([]);
     const [purchasedProducts, setPurchasedProducts] = useState([]);
@@ -269,6 +273,61 @@ export const CartProvider = ({ children }) => {
     const handleAddNewAdress = () => {
         handleNavigate('/userAdress');
     }
+
+    const getLocationForMap = (newCoordinates) => {
+        setCoordinates(newCoordinates);
+    }
+
+    const googleApiToDatabase = (address, userEmail, userName, userPhone, userZip, userBuildingNo, userFoor, userApartmentNo, userAdressDirection, lat, lng) => {
+        const userId = signedUser.id;
+        fetch(`http://localhost:3000/profile/adress-new-google-api/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                address,
+                userEmail,
+                userName,
+                userPhone,
+                userZip,
+                userBuildingNo,
+                userFoor,
+                userApartmentNo,
+                userAdressDirection,
+                lat,
+                lng
+            })
+
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('bize gelen data forntend :', data)
+                if (data.status === 'adress-success') {
+                    toast.success('your adres added successfuly');
+                } else if (data.status === 'erraddadress') {
+                    console.log('cannot add the adress');
+                    toast.error('can not add the adress');
+                }
+            })
+    }
+
+
+    useEffect(() => {
+        const fetchEnvFile = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/getenv');
+                setApiKey(response.data);
+            }
+            catch (err) {
+                console.log('error getting env file', err)
+            }
+        }
+
+        fetchEnvFile();
+
+    }, [])
+
 
     // ##########################################################################################################################################
     //                                         ADRESS SECTION END
@@ -577,7 +636,7 @@ export const CartProvider = ({ children }) => {
                 } else {
                     console.log('basaramadik abi')
                 }
-                
+
             })
     }
 
@@ -634,6 +693,11 @@ export const CartProvider = ({ children }) => {
             setCategory,
             listOfCategory,
             setListOfCategory,
+            googleApiToDatabase,
+            getLocationForMap,
+            setCoordinates,
+            coordinates,
+            apiKey,
         }}>
             {children}
         </CartContext.Provider>
