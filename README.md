@@ -34,5 +34,5 @@ Users can search for products, apply filters based on their desired categories, 
 
 * Adding promotional ads to the home page
 * Implement secure authentication and session management using JWT/cookies.
-* Fetch products from the database and enable special product operations for users with tokens.
+* Enable special product operations for users with tokens.
 * Enhance the user interface, currently in the prototype stage, with scroll animations (GSAP) and improved layout design.
