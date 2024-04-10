@@ -4,29 +4,35 @@
 
 To download and run the project, follow these steps:
 
-1.  Clone the project and server:
+1.  Clone the project :
     git clone https://github.com/emrekazaz-hub/online-shopping-app-full-stack.git
+
+2. Clone the server :
     git clone https://github.com/emrekazaz-hub/online-shopping-server.git
 
-2.  Navigate to the project directory:
+3.  Navigate to the project directory:
     cd online-shopping-server   
 
-3.  Install necessary packages:
+4.  Install necessary packages:
     npm install
 
-4.  Run the project:
+5.  Run the project:
     npm start
+
+### INFORMATION
+To run the application correctly, you must first run the server. You also need to have a Google Maps API key to add addresses. 
+You can generate the API key from: https://developers.google.com/maps
 
 
 ## Project Overview
 
-The project currently serves as a prototype for an online shopping application. Products are stored and listed in an array for demonstration purposes. Users can browse, search, add/remove items to/from their cart, and manage favorites.
+The project currently serves as a prototype for an online shopping application. Its aim is to facilitate users to both sell and purchase products. There is an admin panel where sellers can add and sell their products, manage inventory, and view details such as the list of buyers and monthly revenue index.
 
-User information is stored in a PostgreSQL database via a Node.js server. Express is used for the server, while Knex is employed for database operations. Users can perform actions such as logging in/out, creating new accounts, viewing and updating profile information, and managing card and address details. All these operations are currently managed and stored in the database without security measures.
+Users can search for products, apply filters based on their desired categories, browse through shopping carts, add or remove items from their carts, and manage their favorites. Additionally, users can save multiple card and address details in their profiles and proceed to complete their purchases with their selected address and card. Upon completion of the purchase, a receipt containing shipping and shopping information is sent to users via email as a PDF file. Furthermore, Google Maps API is utilized for the address registration process of users.
 
 ## Planned Features
 
+* Adding promotional ads to the home page
 * Implement secure authentication and session management using JWT/cookies.
-* Integrate Google Maps API for address handling.
 * Fetch products from the database and enable special product operations for users with tokens.
 * Enhance the user interface, currently in the prototype stage, with scroll animations (GSAP) and improved layout design.
